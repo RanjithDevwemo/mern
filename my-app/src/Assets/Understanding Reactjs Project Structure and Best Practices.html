@@ -1,0 +1,1898 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title>Understanding Reactjs Project Structure and Best Practices</title>
+    <link rel="shortcut icon" href="https://www.xenonstack.com/hubfs/xenonstack-favicon.png">
+    <meta name="description" content="Best Practices for creating and setting up React Project Structure and folder setup in the right format with the best boilerplate that the community prefers.">  
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        
+     
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:description" content="Best Practices for creating and setting up React Project Structure and folder setup in the right format with the best boilerplate that the community prefers.">
+    <meta property="og:title" content="Understanding Reactjs Project Structure and Best Practices">
+    <meta name="twitter:description" content="Best Practices for creating and setting up React Project Structure and folder setup in the right format with the best boilerplate that the community prefers.">
+    <meta name="twitter:title" content="Understanding Reactjs Project Structure and Best Practices">
+
+    
+
+    
+
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/100916921107/1705928409835/xenonstack-hubspot-website/css/components/new-header-dropdown.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/100916921107/1705928409835/xenonstack-hubspot-website/css/components/new-header-dropdown.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/60092617578/1705390373144/xenonstack-hubspot-website/css/components/button-shadow-animation.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/60092617578/1705390373144/xenonstack-hubspot-website/css/components/button-shadow-animation.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/60092815514/1677865713524/xenonstack-hubspot-website/css/components/new-footer-homepage.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/60092815514/1677865713524/xenonstack-hubspot-website/css/components/new-footer-homepage.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/84432275516/1712214108362/xenonstack-hubspot-website/css/templates/insight-post.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/84432275516/1712214108362/xenonstack-hubspot-website/css/templates/insight-post.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/86559599277/1664535888534/xenonstack-hubspot-website/css/components/blogs-video-section.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/86559599277/1664535888534/xenonstack-hubspot-website/css/components/blogs-video-section.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/100907977475/1709017580791/xenonstack-hubspot-website/css/main-file-new.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/100907977475/1709017580791/xenonstack-hubspot-website/css/main-file-new.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/module_assets/48656877895/1675350641272/module_48656877895_search.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/module_assets/48656877895/1675350641272/module_48656877895_search.min.css"></noscript>
+<link rel="stylesheet" href="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/module_assets/84431903092/1714110848137/module_84431903092_insight-post-banner.min.css">
+
+    <script type="application/ld+json">
+{
+  "mainEntityOfPage" : {
+    "@type" : "WebPage",
+    "@id" : "https://www.xenonstack.com/insights/reactjs-project-structure"
+  },
+  "author" : {
+    "name" : "Navdeep Singh Gill",
+    "url" : "https://www.xenonstack.com/insights/author/navdeep-singh-gill",
+    "@type" : "Person"
+  },
+  "headline" : "Understanding Reactjs Project Structure and Best Practices",
+  "datePublished" : "2023-09-26T04:30:00.000Z",
+  "dateModified" : "2023-11-20T06:18:43.574Z",
+  "publisher" : {
+    "name" : "Xenonstack Inc",
+    "logo" : {
+      "url" : "https://f.hubspotusercontent30.net/hubfs/8161231/Xenonstack-Serives%20-3-2-2021-10.png",
+      "@type" : "ImageObject"
+    },
+    "@type" : "Organization"
+  },
+  "@context" : "https://schema.org",
+  "@type" : "BlogPosting",
+  "image" : [ "https://www.xenonstack.com/hubfs/reactjs-project-structure-1.webp" ]
+}
+</script>
+
+
+
+    
+<!--  Added by GoogleTagManager integration -->
+<script>
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+
+
+var hsLoadGtm = function loadGtm() {
+    if(window._hsGtmLoadOnce) {
+      return;
+    }
+
+    if (useGoogleConsentModeV2) {
+
+      gtag('set','developer_id.dZTQ1Zm',true);
+
+      gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+      });
+
+      _hsp.push(['useGoogleConsentModeV2'])
+    }
+
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MZVKBGC');
+
+    window._hsGtmLoadOnce = true;
+};
+
+_hsp.push(['addPrivacyConsentListener', function(consent){
+  if(consent.allowed || (consent.categories && consent.categories.analytics)){
+    hsLoadGtm();
+  }
+}]);
+
+</script>
+
+<!-- /Added by GoogleTagManager integration -->
+
+
+<!-- Site Schema by Morey Creative Studios // www.moreycreative.com/hubspot-schema -->
+
+<script type="application/ld+json">
+ {
+     "@context": "http://schema.org",
+     "@type": "Organization",
+     "mainEntityOfPage":{
+          "@type":"WebPage",
+          "@id":"https://www.xenonstack.com/insights/reactjs-project-structure",
+          "description": "Best Practices for creating and setting up React Project Structure and folder setup in the right format with the best boilerplate that the community prefers."
+     },
+     "url": "http://xenonstack.com",
+     "logo": "https://www.xenonstack.com/hubfs/logo_835-700%20-%20Square.png",
+     "name": "XenonStack",
+      "description": "XenonStack is AI First, Data Driven and Cloud Native Organization enabling Businesses towards Platform Strategy, engineering and development.",
+     "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "7700 Windrose Ave. ",
+          "addressLocality": "Plano",
+          "addressRegion": "Texas",
+          "addressCountry": "USA",
+          "postalCode": "75024"
+     },
+     "telephone": "",
+     "email": "business@xenonstack.com",
+     "sameAs": [
+          "https://www.facebook.com/XenonStack",
+          "https://www.linkedin.com/company/xenonstack/",
+          "https://www.youtube.com/channel/UC7QqHV3rzJJjWONPtpMwK-w",
+          "https://twitter.com/xenonstack"
+     ]
+}
+</script>
+<!-- End Schema -->
+<meta property="og:image" content="https://www.xenonstack.com/hubfs/reactjs-project-structure-1.webp#keepProtocol">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="ReactJs Project Structure ">
+<meta name="twitter:image" content="https://www.xenonstack.com/hubfs/reactjs-project-structure-1.webp#keepProtocol">
+<meta name="twitter:image:alt" content="ReactJs Project Structure ">
+
+<meta property="og:url" content="https://www.xenonstack.com/insights/reactjs-project-structure">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@xenonstack">
+
+<link rel="canonical" href="https://www.xenonstack.com/insights/reactjs-project-structure">
+
+<meta property="og:type" content="article">
+<link rel="alternate" type="application/rss+xml" href="https://www.xenonstack.com/insights/rss.xml">
+<meta name="twitter:domain" content="www.xenonstack.com">
+<script src="" type="text/javascript">
+    lang: en_US
+</script>
+
+<meta http-equiv="content-language" content="en">
+
+
+
+
+
+ 
+  <meta name="generator" content="HubSpot"></head>
+  <body>
+<!--  Added by GoogleTagManager integration -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MZVKBGC" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- /Added by GoogleTagManager integration -->
+
+
+    <div class="body-wrapper   hs-content-id-57219279026 hs-blog-post hs-blog-id-35785589562">
+      
+      <div data-global-resource-path="xenonstack-hubspot-website/templates/partials/header-new-file.html"><!-- Begin partial -->
+<header id="xs-header">
+	<div class="container-homepage">
+		<!-- Mobile Header -->
+		<div class="mobile-header-block antiCls">
+			<div class="mobile-header-inner">
+				<div class="xenonstacksearch">
+					<img src="https://9471087.fs1.hubspotusercontent-na1.net/hubfs/9471087/header/iconmonstr-search-thin.svg" width="25" height="25" alt="XenonStack Search" id="imageidsearch" onclick="showsearch()">
+				</div>
+				<a href="https://www.xenonstack.com/">
+					<img src="https://www.xenonstack.com/hubfs/xenonstack-website-new-logo.svg" width="200" height="50" alt="Xenonstack Logo">
+				</a>
+				<div class="menu-icon" id="hamburger-menu">
+					<img src="https://www.xenonstack.com/hubfs/xenonstack-hamburger.svg" width="20" height="20" class="xenonstack-hamburger" alt="Xenonstack Hamburger" onclick="showMenu()">
+				</div>
+			</div>
+		</div>
+		<!-- Mobile Header End -->
+		<nav class="xenonstack-header">
+			<div class="xenonstack-header-right">
+				<ul class="xenonstack-header-content">
+					<li class="xenonstack-internal-content ">
+						<a href="https://www.xenonstack.com/">
+							<img src="https://www.xenonstack.com/hubfs/xenonstack-website-new-logo.svg" class="xenonstack-logo" width="147" height="40" alt="Xenonstack Logo"></a>
+					</li>
+					<li class="xenonstack-internal-content " id="what-first-id">
+						<!-- Mobile Header -->
+						<div class="desktop-heading" id="what-we-do">
+							<span>Services</span>
+						</div>
+						<div class="mobile-header-heading">
+							<div class="xenonstack-mobile-heading mobile-drop-down-accordion">
+								<p>Services</p>
+								<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+							</div>
+							<div class="mobile-drop-down-accordion-content" style="display: none">
+								<div class="inner-content">
+									<div class="mobile-drop-down-accordion">
+										<p>XS Discover</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/services/big-data-services/">
+											<p>Enterprise Data Strategy</p>
+										</a>
+										<a href="https://www.xenonstack.com/services/software-development/">
+											<p>Custom Software Development</p>
+										</a>
+										<a href="https://www.xenonstack.com/product-engineering/platform-services/">
+											<p>Platform Engineering</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/enterprise-devops/"></a>
+										<p>Enterprise DevOps</p>
+										<a href="https://www.xenonstack.com/connected-intelligent-enterprise/">
+											<p>Intelligent Enterprise Automation</p>
+										</a>
+										<a href="https://www.xenonstack.com/product-engineering/user-experience/">
+											<p>Digital Experience Platform</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>XS Optimize</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/services/cloud-migration/">
+											<p>Cloud Migration</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/application-modernization/">
+											<p>Application Modernization</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/cloud-infrastructure/">
+											<p>Cloud Infrastructure</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/data-warehouse/">
+											<p>Data Warehouse</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/internet-of-things/">
+											<p>Internet of Things</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/business-intelligence/">
+											<p>Business Intelligence</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>XS Scale</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/solutions/cloud-native-applications/">
+											<p>Cloud-Native Applications</p>
+										</a>
+										<a href="https://www.xenonstack.com/hybrid-cloud-services/">
+											<p>Hybrid-Multi Cloud</p>
+										</a>
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/rpa-services/">
+											<p>Robotic Process Automation</p>
+										</a>
+										<a href="https://www.xenonstack.com/solutions/blockchain/">
+											<p>Blockchain</p>
+										</a>
+										<a href="https://www.xenonstack.com/enterprise/serverless-development/">
+											<p>Serverless Application Development</p>
+										</a>
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/enterprise-operational-analytics/">
+											<p>Enterprise Analytics</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mobile Header End -->
+						<div class="xenonstack-header-dropdown hidden" id="myHeader">
+							<div class="header-dropdown-wrapper" id="header-drop">
+								<div class="container-homepage">
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-first-row">
+												<div class="header-inner-heading">
+													<h3>XS Discover</h3>
+													<p>Understand and plan the modernization roadmap</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="dropdown-middle-row-wrapper">
+												<div class="header-inner-wrapper dropdown-second-row">
+													<div class="header-inner-heading">
+														<h3>XS Optimise</h3>
+														<p>Gain control and streamline application development</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-third-row">
+												<div class="header-inner-heading">
+													<h3>XS Scale</h3>
+													<p>Enable resilient and robust applications</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-content">
+												<ul>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-enterprise-data-strategy.svg" loading="lazy" height="35" width="35" alt="enterprise-data-strategy-icon">
+														<a href="https://www.xenonstack.com/services/big-data-services/">
+															<p>Enterprise Data Strategy</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-custom-software-development.svg" loading="lazy" height="35" width="35" alt="custom-software-development-icon">
+														<a href="https://www.xenonstack.com/services/software-development/">
+															<p>Custom Software Development</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-platform-engineering.svg" loading="lazy" height="35" width="35" alt="platform-engineering-icon">
+														<a href="https://www.xenonstack.com/product-engineering/platform-services/">
+															<p>Platform Engineering</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-enterprise-devops.svg" loading="lazy" height="35" width="35" alt="enterprise-devops-icon">
+														<a href="https://www.xenonstack.com/solutions/enterprise-devops/">
+															<p>Enterprise DevOps</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-serverless-application-development.svg" loading="lazy" height="35" width="35" alt="intelligent-enterprise-automation-icon">
+														<a href="https://www.xenonstack.com/connected-intelligent-enterprise/">
+															<p>Intelligent Enterprise Automation</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/discover-digital-experience-platform.svg" loading="lazy" height="35" width="35" alt="digital-experience-platform-icon">
+														<a href="https://www.xenonstack.com/product-engineering/user-experience/">
+															<p>Digital Experience Platform</p>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="dropdown-middle-row-wrapper">
+												<div class="header-inner-content">
+													<ul>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-cloud-migration.svg" loading="lazy" height="35" width="35" alt="cloud-migration-icon">
+															<a href="https://www.xenonstack.com/services/cloud-migration/">
+																<p>Cloud Migration</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-application-modernization.svg" loading="lazy" height="35" width="35" alt="applicaton-modernization-icon">
+															<a href="https://www.xenonstack.com/solutions/application-modernization/">
+																<p>Application Modernization</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-cloud-infrastrcuture.svg" loading="lazy" height="35" width="35" alt="cloud-infrastructure-icon">
+															<a href="https://www.xenonstack.com/solutions/cloud-infrastructure/">
+																<p>Cloud Infrastructure</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-data-warehouse%20.svg" loading="lazy" height="35" width="35" alt="data-warehouse-icon">
+															<a href="https://www.xenonstack.com/solutions/data-warehouse/">
+																<p>Data Warehouse</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-internet-of-things.svg" loading="lazy" height="35" width="35" alt="internet-of-things-icon">
+															<a href="https://www.xenonstack.com/solutions/internet-of-things/">
+																<p>Internet of Things</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/optimize-business-intelligence.svg" loading="lazy" height="35" width="35" alt="business-intelligence-icon">
+															<a href="https://www.xenonstack.com/solutions/business-intelligence/">
+																<p>Business Intelligence</p>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>               
+										</div>
+										<div class="col-4">
+											<div class="header-inner-content dropdown-last-column">
+												<ul>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-cloud-native-applications.svg" loading="lazy" height="35" width="35" alt="cloud-native-applications-icon">
+														<a href="https://www.xenonstack.com/solutions/cloud-native-applications/">
+															<p>Cloud-Native Applications</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-hybrid-multi-cloud.svg" loading="lazy" height="35" width="35" alt="hybrid-multi-cloud-icon">
+														<a href="https://www.xenonstack.com/hybrid-cloud-services/">
+															<p>Hybrid-Multi Cloud</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-robotic-process-automation.svg" loading="lazy" height="35" width="35" alt="robotic-process-automation-icon">
+														<a href="https://www.xenonstack.com/artificial-intelligence-services/rpa-services/">
+															<p>Robotic Process Automation</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-blockchain.svg" loading="lazy" height="35" width="35" alt="blockchain-icon">
+														<a href="https://www.xenonstack.com/solutions/blockchain/">
+															<p>Blockchain</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-serverless-application-development.svg" loading="lazy" height="35" width="35" alt="serverless-application-development-icon">
+														<a href="https://www.xenonstack.com/enterprise/serverless-development/">
+															<p>Serverless Application Development</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/scale-enterprise-analytics.svg" loading="lazy" height="35" width="35" alt="enterprise-analytics-icon">
+														<a href="https://www.xenonstack.com/artificial-intelligence-services/enterprise-operational-analytics/">
+															<p>Enterprise Analytics</p>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="button-wrapper">
+										<div class="row no-gutters">
+											<div class="col-4">
+												<button class="dropdown-button">
+													<a href="https://www.xenonstack.com/solutions/cloud-native-applications/">
+														<p>Explore All</p>
+													</a>
+												</button>
+											</div>
+											<div class="col-4">
+												<div class="dropdown-middle-row-wrapper">
+													<button class="dropdown-button second-row-button">
+														<a href="https://www.xenonstack.com/services/">
+															<p>Explore All</p>
+														</a>
+													</button>
+												</div>               
+											</div>
+											<div class="col-4">
+												<button class="dropdown-button  third-row-button">
+													<a href="https://www.xenonstack.com/enterprise">
+														<p>Explore All</p>
+													</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							</div></li>
+					<li class="xenonstack-internal-content ">
+						<!-- Mobile Header -->
+						<div class="desktop-heading" id="solutions">
+							<span>Accelerators</span>
+							<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+						</div>
+						<div class="mobile-header-heading">
+							<div class="xenonstack-mobile-heading mobile-drop-down-accordion">
+								<p>Accelerators </p>
+								<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+							</div>
+							<div class="mobile-drop-down-accordion-content" style="display: none">
+								<div class="inner-content">
+									<div class="mobile-drop-down-accordion">
+										<p>XS Cloud Native</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/solutions/kubernetes/">
+											<p>Kubernetes</p>
+										</a>
+										<a href="https://www.xenonstack.com/managed-services/microservices/">
+											<p>Microservices</p>
+										</a>
+										<a href="https://www.xenonstack.com/services/devops/">
+											<p>DevOps</p>
+										</a>
+										<a href="https://www.xenonstack.com/enterprise/container-security/">
+											<p>Container Security</p>
+										</a>
+										<a href="https://www.xenonstack.com/enterprise/cloud-analytics/">
+											<p>Cloud Analytics</p>
+										</a>
+										<a href="https://www.xenonstack.com/enterprise/devsecops/">
+											<p>DevSecOps</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>XS Adaptive AI</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/computer-vision/">
+											<p>Computer Vision</p>
+										</a>
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/enterprise-operational-analytics/">
+											<p>Enterprise Operational Analytics</p>
+										</a>
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/natural-language-processing/">
+											<p>Natural Language Processing</p>
+										</a>
+										<a href="https://www.xenonstack.com/knowledge-graph/">
+											<p>Enterprise Knowledge Graph</p>
+										</a>
+										<a href="https://www.xenonstack.com/big-data-analytics/machine-learning/">
+											<p>Machine Learning</p>
+										</a>
+										<a href="https://www.xenonstack.com/explainable-ai-modelops/">
+											<p>Explainable AI</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>XS Decision intelligence</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/big-data-analytics/">
+											<p>Big Data Analytics</p>
+										</a>
+										<a href="https://www.xenonstack.com/big-data-analytics/data-visualization/">
+											<p>Data Visualization</p>
+										</a>
+										<a href="https://www.xenonstack.com/artificial-intelligence-services/cognitive-customer-analytics/">
+											<p>Customer Analytics</p>
+										</a>
+										<a href="https://www.xenonstack.com/services/real-time-analytics/">
+											<p>Real-Time Analytics</p>
+										</a>
+										<a href="https://www.xenonstack.com/metaverse-development/">
+											<p>Metaverse</p>
+										</a>
+										<a href="https://www.xenonstack.com/enterprise/augmented-data-management/">
+											<p>Augmented Data Management</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mobile Header End -->
+						<div class="xenonstack-header-dropdown hidden" id="myHeader">
+							<div class="header-dropdown-wrapper" id="header-drop">
+								<div class="container-homepage">
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-first-row">
+												<div class="header-inner-heading">
+													<h3>XS Cloud Native</h3>
+													<p>Leverage the modern approach of development</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="dropdown-middle-row-wrapper">
+												<div class="header-inner-wrapper dropdown-second-row">
+													<div class="header-inner-heading">
+														<h3>XS Adaptive AI</h3>
+														<p>Drive and scale AI initiatives</p>
+													</div>
+												</div>
+											</div>               
+										</div>
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-third-row">
+												<div class="header-inner-heading">
+													<h3>XS Decision Intelligence</h3>
+													<p>Build actionable and data-driven insights</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-content">
+												<ul>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-kubernetes.svg" loading="lazy" height="35" width="35" alt="kubernetes-icon">
+														<a href="https://www.xenonstack.com/solutions/kubernetes/">
+															<p>Kubernetes</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-microservices.svg" loading="lazy" height="35" width="35" alt="microservices-icon">
+														<a href="https://www.xenonstack.com/managed-services/microservices/">
+															<p>Microservices</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-devops.svg" loading="lazy" height="35" width="35" alt="devops-icon">
+														<a href="https://www.xenonstack.com/services/devops/">
+															<p>DevOps</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-container-security.svg" loading="lazy" height="35" width="35" alt="container-security-icon">
+														<a href="https://www.xenonstack.com/enterprise/container-security/">
+															<p>Container Security</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-cloud-analytics.svg" loading="lazy" height="35" width="35" alt="cloud-analytics-icon">
+														<a href="https://www.xenonstack.com/enterprise/cloud-analytics/">
+															<p>Cloud Analytics</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/cloud-native-devsecops.svg" loading="lazy" height="35" width="35" alt="devsecops-icon">
+														<a href="https://www.xenonstack.com/enterprise/devsecops/">
+															<p>DevSecOps</p>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="dropdown-middle-row-wrapper">
+												<div class="header-inner-content">
+													<ul>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-computer-vision.svg" loading="lazy" height="35" width="35" alt="computer-vision-icon">
+															<a href="https://www.xenonstack.com/artificial-intelligence-services/computer-vision/">
+																<p>Computer Vision</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-enterprise-operational-analytics.svg" loading="lazy" height="35" width="35" alt="enterprise-operational-analytics-icon">
+															<a href="https://www.xenonstack.com/artificial-intelligence-services/enterprise-operational-analytics/">
+																<p>Enterprise Operational Analytics</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-natural-language-processing.svg" loading="lazy" height="35" width="35" alt="natural-language-processing-icon">
+															<a href="https://www.xenonstack.com/artificial-intelligence-services/natural-language-processing/">
+																<p>Natural Language Processing</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-enterprise-knowledge-graph.svg" loading="lazy" height="35" width="35" alt="enterprise-knowledge-graph-icon">
+															<a href="https://www.xenonstack.com/knowledge-graph/">
+																<p>Enterprise Knowledge Graph</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-machine-learning.svg" loading="lazy" height="35" width="35" alt="machine-learning-icon">
+															<a href="https://www.xenonstack.com/big-data-analytics/machine-learning/">
+																<p>Machine Learning</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/adaptive-ai-explainable-ai.svg" loading="lazy" height="35" width="35" alt="explainable-ai-icon">
+															<a href="https://www.xenonstack.com/explainable-ai-modelops/">
+																<p>Explainable AI</p>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="header-inner-content dropdown-last-column">
+												<ul>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-big-data-analytics.svg" loading="lazy" height="35" width="35" alt="big-data-analytics-icon">
+														<a href="https://www.xenonstack.com/big-data-analytics/">
+															<p>Big Data Analytics</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-data-visualization.svg" loading="lazy" height="35" width="35" alt="data-visuaization-icon">
+														<a href="https://www.xenonstack.com/big-data-analytics/data-visualization/">
+															<p>Data Visualization</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-customer-analytics.svg" loading="lazy" height="35" width="35" alt="customer-analytics-icon">
+														<a href="https://www.xenonstack.com/artificial-intelligence-services/cognitive-customer-analytics/">
+															<p>Customer Analytics</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-real-time-analytics.svg" loading="lazy" height="35" width="35" alt="real-time-analytics-icon">
+														<a href="https://www.xenonstack.com/services/real-time-analytics/">
+															<p>Real-Time Analytics</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-metaverse.svg" loading="lazy" height="35" width="35" alt="metaverse-icon">
+														<a href="https://www.xenonstack.com/metaverse-development/">
+															<p>Metaverse</p>
+														</a>
+													</li>
+													<li>
+														<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/decision-intelligence-augmented-data-management.svg" loading="lazy" height="35" width="35" alt="augmented-data-management-icon">
+														<a href="https://www.xenonstack.com/enterprise/augmented-data-management/">
+															<p>Augmented Data Management</p>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<div class="button-wrapper">
+										<div class="row no-gutters">
+											<div class="col-4">
+												<button class="dropdown-button">
+													<a href="https://www.xenonstack.com/solutions/cloud-native-applications/">
+														<p>Explore All</p>
+													</a>
+												</button>
+											</div>
+											<div class="col-4">
+												<div class=" dropdown-middle-row-wrapper">
+													<button class=" dropdown-button second-row-button">
+														<a href="https://www.xenonstack.com/artificial-intelligence-services/">
+															<p>Explore All</p>
+														</a>
+													</button>
+												</div>
+											</div>
+											<div class="col-4">
+												<button class="dropdown-button third-row-button">
+													<a href="https://www.xenonstack.com/solutions/">
+														<p>Explore All</p>
+													</a>
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="xenonstack-internal-content " id="industries-id">
+						<div class="desktop-heading" id="industries">
+							<span>Industries</span>
+							<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+						</div>
+						<!-- Mobile Header -->
+						<div class="mobile-header-heading">
+							<div class="xenonstack-mobile-heading mobile-drop-down-accordion">
+								<p>Industry Transformation</p>
+								<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+							</div>
+							<div class="mobile-drop-down-accordion-content" style="display: none">
+								<div class="inner-content">
+									<div class="mobile-drop-down-accordion">
+										<p>Industry 5.0</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/industries/banking/">
+											<p>Fintech</p>
+										</a>
+										<a href="https://www.xenonstack.com/industries/digital-healthcare/">
+											<p>Healthcare</p>
+										</a>
+										<a href="https://www.xenonstack.com/industries/retail/">
+											<p>Retail</p>
+										</a>
+										<a href="https://www.xenonstack.com/industries/education/">
+											<p>EdTech</p>
+										</a>
+										<a href="https://www.xenonstack.com/industries/insurance-technology-solution/">
+											<p>Insurance</p>
+										</a>
+										<a href="https://www.xenonstack.com/industries/oil-gas/">
+											<p>Oil and Gas</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>Ai-Driven Industries</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/generative-ai-solutions/infrastructure/">
+											<p>Infrastructure</p>
+										</a>
+										<a href="https://www.xenonstack.com/generative-ai-solutions/public-safety/">
+											<p>Public Safety</p>
+										</a>
+										<a href="https://www.xenonstack.com/generative-ai-solutions/hr-recruitment/">
+											<p>HR and Recruitment</p>
+										</a>
+										<a href="https://www.xenonstack.com/generative-ai-solutions/manufacturing/">
+											<p>Manufacturing</p>
+										</a>
+										<a href="https://www.xenonstack.com/generative-ai-solutions/telecom/">
+											<p>Telecom</p>
+										</a>
+										<a href="https://www.xenonstack.com/generative-ai-solutions/retail-supply-chain/">
+											<p>Retail and Supply Chain</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mobile Header End -->
+						<div class="xenonstack-header-dropdown hidden" id="myHeader">
+							<div class="header-dropdown-wrapper" id="header-drop">
+								<div class="container-homepage">
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-wrapper">
+												<div class="industries-row">
+													<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-service.svg" loading="lazy" height="170" width="170" alt="industry-transformation-icon">
+													<h3>Industry Transformation</h3>
+													<p>Transitioning to the future of industrial transformation with Analytics, Data and Automation</p>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="dropdown-middle-row-wrapper">
+												<div class="header-inner-wrapper dropdown-second-row">
+													<div class="header-inner-heading ">
+														<h3>Industry 5.0</h3>
+														<p>Incorporate automation, efficiency, innovative, and intelligence-driven processes</p>
+													</div>
+													<div class="header-inner-content">
+														<ul>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-fintech.svg" loading="lazy" height="35" width="35" alt="fintech-icon">
+																<a href="https://www.xenonstack.com/industries/banking/">
+																	<p>Fintech</p>
+																</a>
+															</li>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-healthcare.svg" loading="lazy" height="35" width="35" alt="healthcare-icon">
+																<a href="https://www.xenonstack.com/industries/digital-healthcare/">
+																	<p>Healthcare</p>
+																</a>
+															</li>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-retail.svg" loading="lazy" height="35" width="35" alt="retail-icon">
+																<a href="https://www.xenonstack.com/industries/retail/">
+																	<p>Retail</p>
+																</a>
+															</li>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-container-security.svg" loading="lazy" height="35" width="35" alt="edtech-icon">
+																<a href="https://www.xenonstack.com/industries/education/">
+																	<p>EdTech</p>
+																</a>
+															</li>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-insurance.svg" loading="lazy" height="35" width="35" alt="insurance-icon">
+																<a href="https://www.xenonstack.com/industries/insurance-technology-solution/">
+																	<p>Insurance</p>
+																</a>
+															</li>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/industries-oil-and-gas.svg" loading="lazy" height="35" width="35" alt="oil-and-gas-icon">
+																<a href="https://www.xenonstack.com/industries/oil-gas/">
+																	<p>Oil and Gas</p>
+																</a>
+															</li>
+														</ul>
+														<button class="dropdown-button second-row-button industries-button">
+															<a href="https://www.xenonstack.com/industries/">
+																<p>Explore All</p>
+															</a>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-third-row">
+												<div class="header-inner-heading industries-row-heading">
+													<h3>AI-Driven Industries</h3>
+													<p>Accelerate and elevate the adoption of digital transformation with artificial intelligence</p>
+												</div>
+												<div class="header-inner-content">
+													<ul>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-infrastructure%20.svg" loading="lazy" height="35" width="35" alt="infrastrucure-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/infrastructure/">
+																<p>Infrastructure</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-public-safety.svg" loading="lazy" height="35" width="35" alt="public-safety-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/public-safety/">
+																<p>Public Safety</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-hr-and-recruitment.svg" loading="lazy" height="35" width="35" alt="hr-and-recruitment-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/hr-recruitment/">
+																<p>HR and Recruitment</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-manufacturing.svg" loading="lazy" height="35" width="35" alt="manufacturing-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/manufacturing/">
+																<p>Manufacturing</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-telecom.svg" loading="lazy" height="35" width="35" alt="telecom-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/telecom/">
+																<p>Telecom</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ai-driven-industries-retail-and-supply-chain.svg" loading="lazy" height="35" width="35" alt="retail-and-supply-chain-icon">
+															<a href="https://www.xenonstack.com/generative-ai-solutions/retail-supply-chain/">
+																<p>Retail and Supply Chain</p>
+															</a>
+														</li>
+													</ul>
+													<button class="dropdown-button third-row-button industries-button">
+														<a href="https://www.xenonstack.com/generative-ai-solutions/">
+															<p>Explore All</p>
+														</a>
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="xenonstack-internal-content ">
+						<div class="desktop-heading" id="resources">
+							<span>Resources</span>
+							<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+						</div>
+						<!-- Mobile Header -->
+						<div class="mobile-header-heading">
+							<div class="xenonstack-mobile-heading mobile-drop-down-accordion">
+								<p>Resources</p>
+								<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+							</div>
+							<div class="mobile-drop-down-accordion-content" style="display: none">
+								<div class="inner-content">
+									<div class="mobile-drop-down-accordion">
+										<p>Thought Leadership</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/blog">
+											<p>Blogs</p>
+										</a>
+										<a href="https://www.xenonstack.com/presentations/">
+											<p>Presentation</p>
+										</a>
+										<a href="https://www.xenonstack.com/videos/">
+											<p>Video</p>
+										</a>
+										<a href="https://www.xenonstack.com/e-book">
+											<p>Ebook</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>Industry Overview</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/insights">
+											<p>Insights</p>
+										</a>
+										<a href="https://www.xenonstack.com/use-cases">
+											<p>Use Case</p>
+										</a>
+										<a href="https://www.xenonstack.com/glossary">
+											<p>Glossary</p>
+										</a>
+                    <a href="https://www.xenonstack.com/case-studies">
+											<p>Case Studies</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mobile Header End -->
+						<div class="xenonstack-header-dropdown hidden" id="myHeader">
+							<div class="resources-wrapper">
+								<div class="container-homepage">
+									<div class="row">
+										<div class="col-3">
+											<div class="resources-left-side-content">
+												<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/transformation-driven-resources-and-technology.svg" loading="lazy" height="100" width="100" alt="technology-updates-icon">
+												<h3>Technology updates and resources</h3>
+												<p>Walkthrough of next generation technologies and insights on future trends</p>
+												<button>
+													<a href="https://www.xenonstack.com/resources/">
+														<p>Explore All</p>
+													</a>
+												</button>
+											</div>
+										</div>
+										<div class="col-9">
+											<div class="resources-right-side">
+												<div class="resources-right-side-heading-1">
+													<p>Thought Leadership</p>
+												</div>
+												<div class="resources-right-side-content">
+													<div class="parent-wrapper">
+														<div class="child-wrapper">
+															<ul>
+																<li>
+																	<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/blogs.svg" loading="lazy" height="35" width="35" alt="blogs-icon">
+																	<a href="https://www.xenonstack.com/blog">
+																		<p>Blogs</p>
+																	</a>
+																</li>
+																<li>
+																	<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/ebook.svg" loading="lazy" height="35" width="35" alt="ebook-icon">
+																	<a href="https://www.xenonstack.com/e-book">
+																		<p>Ebook</p>
+																	</a>
+																</li>
+															</ul>
+														</div>
+														<div class="child-wrapper">
+															<ul>
+																<li>
+																	<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/presentation.svg" loading="lazy" height="35" width="35" alt="presentation-icon">
+																	<a href="https://www.xenonstack.com/presentations/">
+																		<p>Presentation</p>
+																	</a>
+																</li>
+															</ul>
+														</div>
+														<div class="child-wrapper">
+															<ul>
+																<li>
+																	<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/video.svg" loading="lazy" height="35" width="35" alt="video-icon">
+																	<a href="https://www.xenonstack.com/videos/">
+																		<p>Video</p>
+																	</a>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+												<div class="resources-right-side-heading-2">
+													<p>Industry Overview</p>
+												</div>
+												<div class="parent-wrapper bottom-cards">
+													<div class="child-wrapper">
+														<ul>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/insights.svg" loading="lazy" height="35" width="35" alt="insights-icon">
+																<a href="https://www.xenonstack.com/insights">
+																	<p>Insights</p>
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="child-wrapper">
+														<ul>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/use-case.svg" loading="lazy" height="35" width="35" alt="use-case-icon">
+																<a href="https://www.xenonstack.com/use-cases">
+																	<p>Use Case</p>
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="child-wrapper">
+														<ul>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/glossary.svg" loading="lazy" height="35" width="35" alt="glossary-icon">
+																<a href="https://www.xenonstack.com/glossary">
+																	<p>Glossary</p>
+																</a>
+															</li>
+														</ul>
+													</div>
+                          <div class="child-wrapper">
+														<ul>
+															<li>
+																<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/case-study-icon.svg" loading="lazy" height="35" width="35" alt="glossary-icon">
+																<a href="https://www.xenonstack.com/case-studies">
+																	<p>Case Studies</p>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!-- Mobile Header -->
+					<li class="xenonstack-internal-content ">
+						<div class="desktop-heading" id="company">
+							<span>Company</span>
+							<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+						</div>
+						<!-- Mobile Header -->
+						<div class="mobile-header-heading">
+							<div class="xenonstack-mobile-heading mobile-drop-down-accordion">
+								<p>Company</p>
+								<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="xenonstack-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+							</div>
+							<div class="mobile-drop-down-accordion-content" style="display: none">
+								<div class="inner-content">
+									<div class="mobile-drop-down-accordion">
+										<p>XS Journey</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/about-us">
+											<p>About Us</p>
+										</a>
+										<a href="https://www.xenonstack.com/our-purpose/">
+											<p>Our Purpose</p>
+										</a>
+										<a href="https://www.xenonstack.com/how-we-work/">
+											<p>How We Work</p>
+										</a>
+										<a href="https://www.xenonstack.com/how-we-grow/">
+											<p>How We Grow</p>
+										</a>
+									</div>
+									<div class="mobile-drop-down-accordion">
+										<p>XS Scale</p>
+										<img src="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp" loading="lazy" class="mobile-inner-accordion-down-arrow" alt="Xenonstack Down Arrow" height="35" width="35" srcset="https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=18&amp;height=18&amp;name=xenonstack-down-arrow.webp 18w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=35&amp;height=35&amp;name=xenonstack-down-arrow.webp 35w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=53&amp;height=53&amp;name=xenonstack-down-arrow.webp 53w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=70&amp;height=70&amp;name=xenonstack-down-arrow.webp 70w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=88&amp;height=88&amp;name=xenonstack-down-arrow.webp 88w, https://www.xenonstack.com/hs-fs/hubfs/xenonstack-down-arrow.webp?width=105&amp;height=105&amp;name=xenonstack-down-arrow.webp 105w" sizes="(max-width: 35px) 100vw, 35px">
+									</div>
+									<div class="mobile-drop-down-accordion-content" style="display: none">
+										<a href="https://www.xenonstack.com/about-us/partners-clients/">
+											<p>Clients and Partners</p>
+										</a>
+										<a href="https://www.xenonstack.com/xenonstack-university/">
+											<p>XenonStack University</p>
+										</a>
+										<a href="https://www.xenonstack.com/neural-company/">
+											<p>Neural Company - Metaverse</p>
+										</a>
+										<a href="https://www.xenonstack.com/leadership-team/">
+											<p>Leadership Team</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Mobile Header End -->
+						<div class="xenonstack-header-dropdown hidden" id="myHeader">
+							<div class="header-dropdown-wrapper" id="header-drop">
+								<div class="container-homepage">
+									<div class="row no-gutters">
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-first-row company-front-row">
+												<div class="header-inner-heading heading-company-journey">
+													<h3>XS Journey</h3>
+													<p>How we operate and scale</p>
+												</div>
+												<div class="header-inner-content">
+													<ul>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-journey-about-us.svg" loading="lazy" height="35" width="35" alt="about-us-icon">
+															<a href="https://www.xenonstack.com/about-us">
+																<p>About Us</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-journey-our-purpose.svg" loading="lazy" height="35" width="35" alt="our-purpose-icon">
+															<a href="https://www.xenonstack.com/our-purpose/">
+																<p>Our Purpose</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-journey-how-we-work.svg" loading="lazy" height="35" width="35" alt="how-we-work-icon">
+															<a href="https://www.xenonstack.com/how-we-work/">
+																<p>How We Work</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-journey-how-we-grow.svg" loading="lazy" height="35" width="35" alt="how-we-grow-icon">
+															<a href="https://www.xenonstack.com/how-we-grow/">
+																<p>How We Grow</p>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="header-inner-wrapper dropdown-second-row">
+												<div class="header-inner-heading  heading-company-journey">
+													<h3>XS Scale</h3>
+													<p>Helping clients achieve technology excellence</p>
+												</div>
+												<div class="header-inner-content">
+													<ul>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-scale-clients-and-partners.svg" loading="lazy" height="35" width="35" alt="clients-and-partners-icon">
+															<a href="https://www.xenonstack.com/about-us/partners-clients/">
+																<p>Clients and Partners</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-scale-xenonstack-university.svg" loading="lazy" height="35" width="35" alt="xenonstack-university-icon">
+															<a href="https://www.xenonstack.com/xenonstack-university/">
+																<p>XenonStack University</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/xs-scale-neural-company-metaverse.svg" loading="lazy" height="35" width="35" alt="neural-company-metaverse-icon">
+															<a href="https://www.xenonstack.com/neural-company/">
+																<p>Neural Company - Metaverse</p>
+															</a>
+														</li>
+														<li>
+															<img src="https://www.xenonstack.com/hubfs/xs-scale-leadership-team.svg" loading="lazy" height="35" width="35" alt="leadership-team-icon">
+															<a href="https://www.xenonstack.com/leadership-team/">
+																<p>Leadership Team</p>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="col-4">
+											<div class="header-inner-wrapper">
+												<div class="company-content-wrapper">
+													<img src="https://www.xenonstack.com/hubfs/xs-header-dropdown/becoming-a-neural-company.svg" loading="lazy" height="140" width="140" alt="enablers-of-tomorrow-icon">
+													<h3>
+														Enablers of<br>
+														Tomorrow
+													</h3>
+													<p>Becoming a Neural Company</p>
+													<button>
+														<a href="https://www.xenonstack.com/neural-company-enablers/">
+															<p>Understand How</p>
+														</a>
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+					<!-- Mobile Header End -->
+				</ul>
+				<ul class="contact-us-side">
+					<li class="xenonstack-header-button">
+						<button class="checkout-button header-button rounded-button">
+							<a href="https://www.xenonstack.com/contact-us/">
+								<span>CONTACT US</span>
+							</a>
+						</button>
+					</li>
+					<li class="xenonstacksearch search" id="search-menu">
+						<img src="https://9471087.fs1.hubspotusercontent-na1.net/hubfs/9471087/header/iconmonstr-search-thin.svg" width="25" height="25" alt="XenonStack Search" id="imageidsearch" onclick="showsearch()">
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<div class="xenonstack-header-dropdown-1">
+			<div class="container-homepage">
+				<div class="row">
+					<div class="col-12">
+						<div class="search-inside">
+							<div id="hs_cos_wrapper_search" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module">
+
+<div class="hs-search-field"> 
+    <div class="hs-search-field__bar"> 
+      <div class="search-input-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20.913" height="20.919" viewbox="0 0 23.913 23.919"><defs><style>.a{stroke:#000;stroke-width:1.5px;}</style></defs><g transform="translate(0.75 0.75)"><path class="a" d="M20.768,20.225a9.067,9.067,0,1,0-.528.529L26.8,27.309a.374.374,0,1,0,.529-.528ZM8.2,19.967a8.33,8.33,0,1,1,5.89,2.439A8.339,8.339,0,0,1,8.2,19.967Z" transform="translate(-5.02 -5)" /></g></svg>
+        </div>
+      <form action="/hs-search-results">
+        
+        <input type="text" class="hs-search-field__input" name="term" autocomplete="off" aria-label="Search" placeholder="What are you looking for?">
+        
+        
+        
+        
+        
+
+        
+      </form>
+    </div>
+    <ul class="hs-search-field__suggestions"></ul>
+</div></div>
+						</div>
+					</div>
+				</div>
+				<div class="xenonstack-recommends-wrapper">
+					<h4>XenonStack Recommends</h4>
+					<div class="row">
+						<div class="col-6">
+							<ul>
+								<li>
+									<a href="/blog/">
+										<img src="https://www.xenonstack.com/hubfs/xenonstack-blog.svg" loading="lazy" width="44" height="44" class="" alt="XenonStack Dropdown">
+										<p>Blogs</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-6">
+							<ul>
+								<li>
+									<a href="/neural-company-enablers/">
+										<img src="https://www.xenonstack.com/hubfs/xenonstack-neural-company.svg" loading="lazy" width="44" height="44" class="" alt="XenonStack Dropdown">
+										<p>Neural Company</p>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+<!-- End partial --></div>
+      
+			
+      
+<div id="blog-post__progress-wrapper" class="blog-post__progress-wrapper">
+	<div id="blog-post__progress-bar" class="blog-post__progress-bar"></div>
+</div>
+
+<section class="assessment-listing-banner" style="background-image: url(https://9471087.fs1.hubspotusercontent-na1.net/hubfs/9471087/001%20Banner%20Dependency%20Scanning.svg);">
+	<div class="container">
+		<div class="assessment-listing-banner-heading-wrapper">
+			
+			<a href="https://www.xenonstack.com/insights/tag/enterprise-digital-platform"><p>Enterprise Digital Platform</p></a>
+			
+			<h1> <span id="hs_cos_wrapper_name" class="hs_cos_wrapper hs_cos_wrapper_meta_field hs_cos_wrapper_type_text" style="" data-hs-cos-general-type="meta_field" data-hs-cos-type="text">Understanding Reactjs Project Structure and Best Practices</span></h1>             
+			<p><a href="https://www.xenonstack.com/insights/author/navdeep-singh-gill">Navdeep Singh Gill </a> | 26 Sep 2023</p>
+		</div>
+	</div>
+</section>
+<div class="tabel-of-content-wrapper">
+	<div class="container">
+		<div class="tabel-of-content">
+			<h2>Table of Content</h2>
+			<div class="row">
+				<div class="col-12 col-sm-6 col-md-6 col-lg-6">
+					<div class="sub-list-1" id="blogTableOfContent">
+						<h4>
+							In this Article
+						</h4>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6 col-md-6 col-lg-6">
+  <div class="sub-list-2">
+    <h3>
+      Additional Resources
+    </h3>
+    <ul>
+      <li>
+        
+        
+        <a href="https://www.xenonstack.com/insights/micro-frontend-architecture">
+          Micro Frontend Architecture and Best Practices
+        </a>
+      </li>
+      <li>
+        
+        
+        <a href="/blog/reactive-programming-monitoring">
+          Reactive Programming Solutions for Monitoring Platform
+        </a>
+      </li>
+      <li>
+        
+        
+        <a href="https://www.xenonstack.com/insights/code-splitting-in-react">
+          Code-Splitting in ReactJs with Its Best Practices
+        </a>
+      </li>
+      <li>
+        
+        
+        <a href="/managed-services/microservices/">
+          Scale Independentely with Microservices and Integration Services
+        </a>
+      </li>
+      <li>
+        
+        
+        <a href="/readiness-assessment/">
+          <div>Business Transformation Readiness Assessment</div>
+        </a>
+      </li>
+      <li>
+        
+        
+        <a href="https://www.xenonstack.com/talk-to-specialist/">
+          Talk to Technology Specialists for Digital Business Transformation
+        </a>
+      </li>
+  
+    </ul>
+  </div>
+</div>
+			</div>
+		</div>
+	</div>
+	<article class="insight-detail-wrapper" id="insight-detail-wrapper">
+		<div class="container-homepage">
+			<div class="social-icons">
+				<div class="social-icons-internal">
+					<ul>
+						<li>
+							<a href="http://www.facebook.com/share.php?u=https://www.xenonstack.com/insights/reactjs-project-structure">
+								<img src="https://www.xenonstack.com/hubfs/xenonstack-facebook-service.svg" width="42" height="42" loading="lazy" class="social-images" alt="XenonStack Facebook">
+							</a>
+						</li>
+						<li>
+							<a href="https://twitter.com/intent/tweet?text=I+found+this+interesting+blog+post&amp;url=https://www.xenonstack.com/insights/reactjs-project-structure">
+								<img src="https://www.xenonstack.com/hubfs/xs-twitter-white-updated-icon.svg" width="42" height="42" loading="lazy" class="social-images" alt="XenonStack Twitter">
+							</a>
+						</li>
+						<li>
+							<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.xenonstack.com/insights/reactjs-project-structure">
+								<img src="https://www.xenonstack.com/hubfs/xenonstack-linkedin-service.svg" width="42" height="42" loading="lazy" class="social-images" alt="XenonStack Linked In">
+							</a>
+						</li>
+						<li>
+							<a href="mailto:?subject=Check%20out%20https://www.xenonstack.com/insights/reactjs-project-structure%20&amp;body=Check%20out%20https://www.xenonstack.com/insights/reactjs-project-structure">
+								<img src="https://www.xenonstack.com/hubfs/xenonstack-email-service.svg" width="42" height="42" loading="lazy" class="social-images" alt="XenonStack Email Icon">
+							</a>
+						</li>  
+					</ul>
+				</div>
+			</div>
+			<div class="insight-detail">
+        <img src="https://www.xenonstack.com/hubfs/reactjs-project-structure-1.webp" alt="ReactJs Project Structure ">
+				<span id="hs_cos_wrapper_post_body" class="hs_cos_wrapper hs_cos_wrapper_meta_field hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="meta_field" data-hs-cos-type="rich_text"><h2>Introduction to ReactJs Project Structure</h2>
+<p><span style="text-decoration: none;">Before we get discussion the basis, before deep diving into specifics.</span></p>
+<!--more--><h2><span style="text-decoration: none;">What is React?</span></h2>
+<p><span style="text-decoration: none;">It is a JavaScript library created by Facebook, a User Interface(UI) library, and a tool for building UI components.&nbsp;</span></p>
+<p><span style="text-decoration: none;">Best practices are followed for doing projects in the right structure. Almost all the time, the create-react-app we use creates an app with no build configuration. In this blog, we will build our boilerplate. Let us look at the best boilerplate structures that most of the community prefers.</span></p>
+<h2><span style="text-decoration: none;">What is the architecture of its application?</span></h2>
+<p><span style="text-decoration: none;">React library is just a UI library. It does not enforce any pattern to writing a complex application. The Developers are free to choose the design pattern. The community advocates specific design patterns. One of the patterns is the Flux pattern. React library also has a lot of concepts like Higher Order component, Context, Render props, Refs, etc., to write better code.&nbsp;</span></p>
+<blockquote><span style="text-decoration: none;">A process which is used for increasing the quality of a software or a product and for improving it by identifying defects, problems, and errors.<span style="font-size: 14pt;"> Click to explore about, <a href="https://www.xenonstack.com/blog/test-driven-development-javascript" rel="noopener" target="_blank">JavaScript and ReactJS Unit Testing</a></span></span></blockquote>
+<h2><span style="text-decoration: none;">How to Structure React Project?</span></h2>
+<p><span style="text-decoration: none;">We have read many articles where each article explains the boilerplate, and we might get confused about which one is the best approach.</span></p>
+<p><span style="text-decoration: none;">There is no "best project architecture" that will fit with any project and coding style.</span><br><span style="text-decoration: none;">But you should always structure your project. It doesn't follow any particular project structure, and the positive thing about this is that it allows us to make up a structure to suit our needs. The discussion here is simply an opinionated way to structure a project. You can utilise some parts or all of them for your project. So let’s get started.</span></p>
+<h2><img src="https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=1280&amp;height=681&amp;name=react-directory-structure.png" width="1280" height="681" loading="lazy" alt="react-directory-structure" style="height: auto; max-width: 100%; width: 1280px;" srcset="https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=640&amp;height=341&amp;name=react-directory-structure.png 640w, https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=1280&amp;height=681&amp;name=react-directory-structure.png 1280w, https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=1920&amp;height=1022&amp;name=react-directory-structure.png 1920w, https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=2560&amp;height=1362&amp;name=react-directory-structure.png 2560w, https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=3200&amp;height=1703&amp;name=react-directory-structure.png 3200w, https://www.xenonstack.com/hs-fs/hubfs/react-directory-structure.png?width=3840&amp;height=2043&amp;name=react-directory-structure.png 3840w" sizes="(max-width: 1280px) 100vw, 1280px"></h2>
+<h2><span style="text-decoration: none;">Project Setup for React</span></h2>
+<p><span style="text-decoration: none;">First, let’s set up the development environment</span></p>
+<ol>
+<li><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjB1aK_ksLzAhUOxjgGHWXSCqEQFnoECAoQAQ&amp;url=https%3A%2F%2Fcode.visualstudio.com%2F&amp;usg=AOvVaw15O90sm1ios8AUpw56hCml" rel="noopener" target="_blank" style="text-decoration: none;">VS Code</a><span style="text-decoration: none;"> with various extensions as a code editor.</span></li>
+<li><span style="text-decoration: none;">Google Chrome as a browser provides multiple developer-friendly tools for debugging.</span></li>
+<li><span style="text-decoration: none;">As a debugging tool, </span><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjm9ITTksLzAhWPxjgGHfKPAcMQFnoECAIQAQ&amp;url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Freact-developer-tools%2Ffmkadmapgofadopljbjfkapdkoienihi%3Fhl%3Den&amp;usg=AOvVaw0wMjYcmk5cGjg5a7DCp6kq" rel="noopener" target="_blank" style="text-decoration: none;">React developer tools</a><span style="text-decoration: none;"> and </span><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwi8noXLksLzAhUczDgGHZSbDgAQFnoECAIQAQ&amp;url=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fredux-devtools%2Flmhkpmbekcpmknklioeibfkpmmfibljd%3Fhl%3Den&amp;usg=AOvVaw0nx2UHMZL6wwwf2BNRTg5T" rel="noopener" target="_blank" style="text-decoration: none;">Redux DevTools</a><span style="text-decoration: none;"> are very useful.</span></li>
+</ol>
+<p><span style="text-decoration: none;">Now we can use CLI to create a new project.</span></p>
+<p><span style="text-decoration: none;">React js that is created using ‘create-react-app' gives some default code. Let’s delete almost everything like logos, images, styling, etc., and keep the skeleton application, and now we can start doing our folder structure.</span></p>
+<h2><span style="text-decoration: none;">What is the Folder Structure for React Project?</span></h2>
+<p><span style="text-decoration: none;">The folder structure looks like this.</span></p>
+<ul>
+<li><span style="text-decoration: none;">Assets Folder</span></li>
+<li><span style="text-decoration: none;">Layouts Folder</span></li>
+<li><span style="text-decoration: none;">Components Folder</span></li>
+<li><span style="text-decoration: none;">Pages Folder</span></li>
+<li><span style="text-decoration: none;">Middle ware Folder</span></li>
+<li><span style="text-decoration: none;">Routes Folder</span></li>
+<li><span style="text-decoration: none;">Config Folder</span></li>
+<li><span style="text-decoration: none;">Services Folder</span></li>
+<li><span style="text-decoration: none;">Utils Folder</span></li>
+</ul>
+<h4><span style="text-decoration: none;">Assets Folder</span></h4>
+<p><span style="text-decoration: none;">As the name says, it contains assets of our project. It consists of images and styling files. Here we can store our global styles. We are centralizing the project so we can store the page-based or component-based styles over here. But we can even keep style according to the pages folder or component folder also. But that depends on developer comfortability.</span></p>
+<h4><span style="text-decoration: none;">Layouts Folder</span></h4>
+<p><span style="text-decoration: none;">As the name says, it contains layouts available to the whole project like header, footer, etc. We can store the header, footer, or sidebar code here and call it.</span></p>
+<h4><span style="text-decoration: none;">Components Folder</span></h4>
+<p><span style="text-decoration: none;">Components are the building blocks of any react project. This folder consists of a collection of </span><a href="https://theme-ui.com/components" rel="noopener" target="_blank">UI components</a><span style="text-decoration: none;"><a href="https://theme-ui.com/components" rel="noopener" target="_blank"> </a>like buttons, modals, inputs, loader, etc., that can be used across various files in the project. Each component should consist of a test file to do a unit test as it will be widely used in the project.</span></p>
+<h4><span style="text-decoration: none;">Pages Folder</span></h4>
+<p><span style="text-decoration: none;">The files in the pages folder indicate the route of the react application. Each file in this folder contains its route. A page can contain its sub folder. Each page has its state and is usually used to call an sync operation. It usually consists of various components grouped.</span><span style="text-decoration: none;"><span style="font-size: 14pt;"></span></span></p>
+<h4><span style="text-decoration: none;">Middle ware Folder</span></h4>
+<p><span style="text-decoration: none;">This folder consists of middle ware that allows for side effects in the application. It is used when we are using reduce with it. Here we keep all our custom middle ware.</span></p>
+<h4><span style="text-decoration: none;">Routes Folder</span></h4>
+<p><span style="text-decoration: none;">This folder consists of all routes of the application. It consists of private, protected, and all types of routes. Here we can even call our sub-route.</span></p>
+<h4><span style="text-decoration: none;">Config Folder</span></h4>
+<p><span style="text-decoration: none;">This folder consists of a configuration file where we store environment variables in </span><a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjju8SAlMLzAhUY3jgGHaL1C0EQFnoECBYQAQ&amp;url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fconfig-js&amp;usg=AOvVaw2OwY-RqWd6L0LnMcvlQme6" rel="noopener" target="_blank" style="text-decoration: none;">config.js</a><span style="text-decoration: none;">. We will use this file to set up multi-environment configurations in your application.</span></p>
+<h4><span style="text-decoration: none;">Services Folder</span></h4>
+<p><span style="text-decoration: none;">This folder will be added if we use </span><a href="https://www.freecodecamp.org/news/what-is-redux-store-actions-reducers-explained/" rel="noopener" target="_blank">redux</a><span style="text-decoration: none;"><a href="https://www.freecodecamp.org/news/what-is-redux-store-actions-reducers-explained/" rel="noopener" target="_blank" id="__hsNewLink"> </a>in your project. Inside it, there are 3 folders named actions, reducers, and constant subfolders to manage states. The actions and reducers will be called in almost all the pages, so create actions, reducers &amp; constants according to pages name.</span></p>
+<h4><span style="text-decoration: none;">Utils Folder</span></h4>
+<p><span style="text-decoration: none;">Utils folder consists of some repeatedly used functions that are commonly used in the project. It should contain only common js functions &amp; objects like dropdown options, regex condition, data formatting, etc.</span></p>
+<div class="blog-flex-content"><span style="text-decoration: none;"><img src="https://www.xenonstack.com/hubfs/xenonstack-optimizing-cloud-application-development.svg" alt="xenonstack-optimizing-cloud-application-development" width="78" height="60" loading="lazy" style="width: 78px;"></span>
+<div><span style="text-decoration: none;">Building highly powerful react-native-based enterprise web applications and cross-platform application capabilities.eds.<strong><span style="font-size: 14pt;"><a href="https://www.xenonstack.com/services/reactjs-development/"> Click here for our React.JS Application Development Services </a></span></strong></span></div>
+</div>
+<h2><span style="text-decoration: none;">Conclusion</span></h2>
+<p><span style="text-decoration: none;">This is one of the most used architectures. As I have already mentioned, no best architecture will suit every project. I change requirements but always remember to maintain a folder structure so that every code is centralised and easily understood by any developer.</span></p>
+<ul>
+<li><span style="text-decoration: none;">Click here to access </span><a href="/blog/react-learning-path" rel="noopener" style="text-decoration: none;">Advanced Guide for Angular Developers</a></li>
+<li><span style="text-decoration: none;">Discover more about </span><a href="/blog/optimizing-react-application" rel="noopener" style="text-decoration: none;">Optimizing React Application Performance</a></li>
+<li>Developing <a href="/solutions/application-management/" rel="noopener" id="__hsNewLink">application management solutions</a> that are capable of providing scalable and sustainable value.</li>
+</ul></span>  
+			</div>
+		</div>
+	</article>
+	<section class="tab-switch-cards-section">
+		<div class="tab-swicther-background">
+			<div class="container-homepage">
+				<div class="blog-card-title">
+					<h2>
+						Related Insights
+					</h2>
+				</div>
+				<div class="tabs-1">                 
+					<div class="tab-body-conatiner">
+						<div class="tab-body-1">
+							<div class="active-1 body-tab">
+								
+								<div class="row no-gutters image-with-text-card-row">
+									
+									<div class="col-12 col-sm-4 col-md-4 col-lg-4">
+										<div class="image-with-text-card-wrapper">
+											<div class="image-with-text-below-card-wrapper-ouside">
+												<div class="image-with-text-below-card-wrapper-inside-imageside">
+													<img src="https://www.xenonstack.com/hubfs/MicrosoftTeams-image%20%2834%29-2.png" loading="lazy" alt="Application Modernization and its Challenges | Quick Guide">
+												</div>
+												<div class="image-with-text-below-card-wrapper-inside-textside">
+													<div>
+														
+														<p class="blog-post__catgory"><a href="https://www.xenonstack.com/insights/tag/enterprise-digital-platform">Enterprise Digital Platform</a></p>
+														
+														<h3 class="blog-post__title">
+															<a href="https://www.xenonstack.com/insights/application-modernization">Application Modernization and its Challenges | Quick Guide</a>
+														</h3>   
+													</div>
+													<p class="blog-post__date-time">26 Feb 2024</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-12 col-sm-4 col-md-4 col-lg-4">
+										<div class="image-with-text-card-wrapper">
+											<div class="image-with-text-below-card-wrapper-ouside">
+												<div class="image-with-text-below-card-wrapper-inside-imageside">
+													<img src="https://www.xenonstack.com/hubfs/composable.png" loading="lazy" alt="Composable Applications and its Technology | Know Everything Here">
+												</div>
+												<div class="image-with-text-below-card-wrapper-inside-textside">
+													<div>
+														
+														<p class="blog-post__catgory"><a href="https://www.xenonstack.com/insights/tag/enterprise-digital-platform">Enterprise Digital Platform</a></p>
+														
+														<h3 class="blog-post__title">
+															<a href="https://www.xenonstack.com/insights/composable-applications">Composable Applications and its Technology | Know Everything Here</a>
+														</h3>   
+													</div>
+													<p class="blog-post__date-time">12 Feb 2024</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="col-12 col-sm-4 col-md-4 col-lg-4">
+										<div class="image-with-text-card-wrapper">
+											<div class="image-with-text-below-card-wrapper-ouside">
+												<div class="image-with-text-below-card-wrapper-inside-imageside">
+													<img src="https://www.xenonstack.com/hubfs/Internal%20Developer%20Platform-xenonstack-1.png" loading="lazy" alt="Internal Developer Platform (IDP) benefits and its key components">
+												</div>
+												<div class="image-with-text-below-card-wrapper-inside-textside">
+													<div>
+														
+														<p class="blog-post__catgory"><a href="https://www.xenonstack.com/insights/tag/enterprise-digital-platform">Enterprise Digital Platform</a></p>
+														
+														<h3 class="blog-post__title">
+															<a href="https://www.xenonstack.com/insights/internal-developer-platform">Internal Developer Platform (IDP) benefits and its key components</a>
+														</h3>   
+													</div>
+													<p class="blog-post__date-time">29 Jan 2024</p>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							</div>    
+						</div>     
+					</div>
+				</div>
+			</div>
+		</div>      
+	</section>
+<!-- 	<script>
+		let h2List = document.querySelectorAll('h2');
+		let img = document.createElement("img");
+		img.src = "https://www.xenonstack.com/hubfs/reactjs-project-structure-1.webp" ;
+		img.alt = "ReactJs Project Structure ";
+		h2List[1]?.appendChild(img);
+	</script> -->
+	
+
+      
+      <div data-global-resource-path="xenonstack-hubspot-website/templates/partials/new-xenon-footer.html"><!-- Begin partial -->
+<footer>
+  <div class="why-xenonstack-wrapper">
+    <div class="container-homepage footer-banner">
+      <h2>How is Generative AI transforming different industries and redefining customer-centric experiences?</h2>
+      <a href="https://www.xenonstack.com/generative-ai-solutions/">Explore How</a>
+    </div>
+  </div>
+  <div class="xenonstack-navigation-footer-wrapper">
+    <div class="container-homepage">
+      <div class="xenonstack-footer-socialmedia-wrapper">
+        <h2>Xenonstack</h2>
+        <div class="social-media-outside-wrapper">
+          <a href="https://www.youtube.com/@XenonStack?sub_confirmation=1" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xenonstack-youtube.svg" width="40" height="40" alt="Youtube" loading="lazy">
+          </a>
+          <a href="https://www.linkedin.com/company/xenonstack/" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xenonstack-linkedin.svg" width="40" height="40" alt="LinkedIn" loading="lazy">
+          </a>
+          <a href="https://www.facebook.com/XenonStack" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xenonstack-facebook.svg" width="40" height="40" alt="Facebook" loading="lazy">
+          </a>
+          <a href="https://twitter.com/xenonstack" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xs-twitter-blue-updated-icon.svg" width="40" height="40" alt="Twitter" loading="lazy">
+          </a>
+          <a href="https://medium.com/@xenonstack" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xenonstack-medium.svg" width="40" height="40" alt="Medium" loading="lazy">
+          </a>
+          <a href="https://www.instagram.com/teamxenonstack/" target="_blank" rel="noopener">
+            <img src="https://www.xenonstack.com/hubfs/xenonstack-instagram.svg" width="40" height="40" alt="Instagram" loading="lazy">
+          </a>
+        </div>
+      </div>
+      <div class="xenonstack-footer-linking-wrapper">
+        <div class="row no-gutters xenonstack-footer-row">
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>Company</h2>
+              <a href="/about-us/">About Us</a>
+              <a href="/neural-company-enablers/">Neural Company</a>
+              <a href="/blog/">Company Blog</a>
+              <a href="/careers/">Careers at XenonStack</a>
+              <a href="/contact-us/">Contact Us</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>Cloud Native</h2>
+              <a href="/services/devops/">DevOps</a>
+              <a href="/solutions/kubernetes/">Kubernetes</a>
+              <a href="/data-observability/">Observability</a>
+              <a href="/enterprise/serverless-development/">Serverless</a>
+              <a href="/solutions/application-modernization/">Application Modernisation</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>Data Engineering</h2>
+              <a href="/knowledge-graph/">Graph Analytics</a>
+              <a href="/solutions/internet-of-things/">IoT</a>
+              <a href="/services/real-time-analytics/">Real-Time Analytics</a>
+              <a href="/solutions/data-lake/">LakeHouse</a>
+              <a href="/solutions/data-warehouse/">Cloud Datawarehouse</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>AI Engineering</h2>
+              <a href="/artificial-intelligence-services/computer-vision/">Computer Vision</a>
+              <a href="/generative-ai-search/">Enterprise Search</a>
+              <a href="/blog/mlops">MLOps</a>
+              <a href="/talk-to-specialist/conversational-ai/">Conversational AI</a>
+              <a href="/artificial-intelligence-services/rpa-services/">Robotic Process Automation</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>Cloud Platform</h2>
+              <a href="/product-engineering/user-experience/">UI Engineering</a>
+              <a href="/blog/ai-based-video-analytics">Video Analytics</a>
+              <a href="/cloud-security/">Cloud Security</a>
+              <a href="/solutions/cloud-native-applications/">Cloud Native App</a>
+              <a href="/product-engineering/platform-services/">Platform Engineering</a>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 col-md-2 col-lg-2">
+            <div class="xenonstack-footer-linking-inside">
+              <h2>Solutions</h2>
+              <a href="/managed-services/dataops/">DataOps</a>
+              <a href="/sre-managed/">SRE Managed</a>
+              <a href="/insights/managed-analytics">Managed Analytics</a>
+              <a href="/managed-ai-cloud/">Managed AI Cloud</a>
+              <a href="/cloud-siem-managed/">Managed SOC</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xenonstack-members-partners-wrapper">
+        <div class="row no-gutters xenonstack-members-partners-row justify-between">
+          <div class="col-12 col-sm-4 col-md-4 col-lg-4">
+            <div class="xenonstack-members-wrapper">
+              <p>We are members of :</p>
+              <div class="xenonstack-member-image-wrapper">
+                <a href="https://landscape.cncf.io/members?selected=xenon-stack-member" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-cloud-native-logo.svg" width="190" height="33" alt="Cloud Native" loading="lazy">
+                </a>
+                <a href="https://www.linuxfoundation.org/join/members/" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-linux-foundation-logo.svg" width="100" height="33" alt="Linux" loading="lazy">
+                </a>
+                <a href="https://landscape.lfai.foundation/members?zoom=120" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-LFI-logo.svg" width="88" height="33" alt="AI Foundation" loading="lazy">
+                </a>
+              </div>
+							<div class="xenonstack-member-image-wrapper-second">
+                <a href="https://partners.amazonaws.com/partners/001E000001AoR0YIAV/XenonStack" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/AWS%20Partner%20Advance%20Tier%20Service%20Logo.svg" alt="aws-partner" loading="lazy">
+                </a>
+                <a href="https://www.xenonstack.com/insights/aws-ml-competency-status" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/AWS%20Partner%20ML%20Service%20Competency%20Logo.svg" alt="aws-competency-partner" loading="lazy">
+                </a>
+								<a href="https://www.xenonstack.com/technology-consulting/aws-devops/" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/aws-partner-devops-services-competency.svg" alt="aws-devops-competency-partner" loading="lazy">
+                </a>
+								<a href="https://www.xenonstack.com/technology-consulting/aws-kinesis/" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/aws-partner-kinesis-delivery.svg" alt="aws-kinesis-delivery-partner" loading="lazy">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-7 col-md-7 col-lg-6">
+            <div class="xenonstack-members-wrapper xenonstack-certifications-wrapper">
+              <p>Partnerships &amp; Certifications :</p>
+              <div class="xenonstack-partnership-image-wrapper">
+                <a href="https://partner.microsoft.com/en-IN/" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-microsoft-partner-logo.svg" alt="Xenonstack Microsoft Member" width="48" height="130" loading="lazy">
+                </a>
+                <a href="https://cloud.withgoogle.com/partners/detail/?id=xenonstack&amp;hl=en-GB" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-google-cloud-logo.svg" alt="Google Cloud Member" width="48" height="130" loading="lazy">
+                </a>
+                <a href="https://databricks.com/company/partners" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-data-bricks-logo.svg" alt="Xenonstack Partners Databricks" width="48" height="130" loading="lazy">
+                </a>
+                <a href="https://landscape.cncf.io/card-mode?organization=xenon-stack&amp;selected=xenon-stack-kcsp" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-kubernetes-logo.svg" alt="Xenonstack Partners Kubernates" width="48" height="130" loading="lazy">
+                </a>
+              </div>
+              <div class="xenonstack-partnership-image-wrapper justify-content-start">
+                <a href="https://partners.amazonaws.com/partners/001E000001AoR0YIAV/XenonStack" target="_blank" rel="noopener">
+                  <img src="https://www.xenonstack.com/hubfs/xenonstack-AWS-logo.svg" alt="AWS Partners" width="48" height="130" loading="lazy">
+                </a>
+                <a href="https://powerbi.microsoft.com/en-gb/partners/xenonstack/" target="_blank" rel="noopener">
+                  <img class="power-bi-logo" src="https://www.xenonstack.com/hubfs/power-bi.svg" alt="Power BI" width="48" height="90" loading="lazy">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="xenonstack-terms-policy-wrapper">
+        <div>
+          <a href="/privacy-policy/">System Status</a>
+          <a href="/privacy-policy/">Cookie Manager</a>
+        </div>
+        <div>
+          <a href="/privacy-policy/">Terms of Use</a>
+          <a href="/privacy-policy/">Security Policy</a>
+          <a href="/privacy-policy/">Trademark Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer></div>
+      
+    </div>
+    
+    
+    
+<!-- HubSpot performance collection script -->
+<script defer src="https://static.hsappstatic.net/content-cwv-embed/static-1.840/embed.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/84432219230/1662723935377/xenonstack-hubspot-website/js/subscription.min.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/84431903132/1678455446519/xenonstack-hubspot-website/js/insight-post.min.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/62767681299/1662723937373/xenonstack-hubspot-website/js/use-case-subscription-form.min.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/86559781171/1666169610850/xenonstack-hubspot-website/js/blogs-video-section.min.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/template_assets/100915770771/1699974255667/xenonstack-hubspot-website/js/header-new-file.min.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script defer src="https://www.xenonstack.com/hs-fs/hub/8161231/hub_generated/module_assets/48656877895/1675350639954/module_48656877895_search.min.js"></script>
+
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "blog-post"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.xenonstack.com\/insights\/reactjs-project-structure"]);
+_hsq.push(["setPageId", "57219279026"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 57219279026,
+    "legacyPageId": "57219279026",
+    "contentFolderId": null,
+    "contentGroupId": 35785589562,
+    "abTestId": null,
+    "languageVariantId": 57219279026,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/8161231.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "007b48fe-3b4e-4294-ab40-0f28eb6e3bc9",
+    ticks: 1714340139407,
+    page_id: 57219279026,
+    
+    content_group_id: 35785589562,
+    portal_id: 8161231,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "blog-post",
+    scp_content_type: "",
+    analytics_page_id: "57219279026",
+    category_id: 3,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.321/js/index.js"></script>
+
+
+
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "sdk.js#xfbml=1&version=v3.0";
+  fjs.parentNode.insertBefore(js, fjs);
+ }(document, 'script', 'facebook-jssdk'));</script> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https:";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+ 
+
+ 
+
+    <script>
+      var font = new FontFace("Roboto", "url(https://f.hubspotusercontent30.net/hubfs/9471087/roboto-fonts/roboto-regular-webfont.woff2)", {
+        unicodeRange: 'U+000-5FF'
+      });
+      font.load().then(function() {
+        document.fonts.add(font);
+        document.body.style.fontFamily = "Roboto, sans-serif";
+      });
+    </script>
+  
+</div></body></html>

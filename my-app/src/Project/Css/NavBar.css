@@ -1,0 +1,12 @@
+.logo{
+width: 10em;
+margin-left: 1em;
+}
+.nav-links{
+    margin-right: 1em;
+}
+.navbar{
+ /* background-color: red; */
+ position: sticky;
+ top: 0;
+}

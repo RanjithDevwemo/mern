@@ -1,0 +1,12 @@
+.scroll{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: skyblue;
+    flex-direction: column;
+    color: white;
+}
+.counting{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
