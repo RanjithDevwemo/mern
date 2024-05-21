@@ -1,0 +1,15 @@
+.form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aqua; */
+    flex-direction: column;
+}
+.main-reg{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.in{
+    padding: 0.5rem;
+}

@@ -1,0 +1,21 @@
+.link{
+    text-decoration: none;
+}
+
+.pro-con{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   /* border: 2px solid black; */
+}
+.main-con{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 300px;
+    flex-direction: column;
+    margin: 1em;
+   border: 2px solid black;
+
+}
